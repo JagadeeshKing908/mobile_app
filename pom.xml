@@ -23,7 +23,7 @@
 
         <!-- MySQL JDBC -->
         <dependency>
-            <groupId>com.mysql</groupId>
+            <groupId>mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <version>8.0.33</version>
         </dependency>
@@ -42,9 +42,11 @@
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
         </dependency>
-      
-        <build>
-            <finalName>MobileSalesApp</finalName>
-        </build>
+
+    </dependencies>
+
+    <build>
+        <finalName>MobileSalesApp</finalName>
+    </build>
 
 </project>
