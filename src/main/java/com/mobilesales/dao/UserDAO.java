@@ -1,16 +1,25 @@
-package com.mobilesales.config;
+package com.mobilesales.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
-public class DBConfig {
+import com.mobilesales.config.DBConfig;
 
-    private static final String URL = "jdbc:mysql://localhost:3306/mobilesales";
-    private static final String USER = "root";
-    private static final String PASSWORD = "password";
+public class UserDAO {
 
-    public static Connection getConnection() throws Exception {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+    public static String getPasswordByUsername(String username) throws Exception {
+        String sql = "SELECT password FROM users WHERE username=?";
+        try (Connection con = DBConfig.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("password");
+            }
+        }
+        return null;
     }
 }
