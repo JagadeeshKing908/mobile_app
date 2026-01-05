@@ -1,31 +1,24 @@
 package com.mobilesales.servlet;
 
 import com.mobilesales.dao.UserDAO;
-import com.mobilesales.util.PasswordUtil;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
-        try {
-            String dbPassword = UserDAO.getPasswordByUsername(username);
+        UserDAO dao = new UserDAO();
+        String dbPassword = dao.getPasswordByUsername(username);
 
-            if (dbPassword != null && PasswordUtil.checkPassword(password, dbPassword)) {
-                resp.getWriter().println("Login Successful");
-            } else {
-                resp.getWriter().println("Invalid Username or Password");
-            }
-
-        } catch (Exception e) {
-            resp.getWriter().println("Internal Server Error");
-        }
-    }
-}
+        if (dbPassword != null && dbPassword
