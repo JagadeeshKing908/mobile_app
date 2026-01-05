@@ -1,6 +1,7 @@
-package com.mobilestore.servlet;
+package com.mobilesales.servlet;
 
-import com.mobilestore.dao.UserDAO;
+import com.mobilesales.dao.UserDAO;
+
 
 import javax.servlet.*;
 import javax.servlet.http.*;
