@@ -44,7 +44,7 @@
         </dependency>
       
     <build>
-        <finalName>mobilesales</finalName>
+        <finalName>MobileSalesApp</finalName>
     </build>
 
 </project>
