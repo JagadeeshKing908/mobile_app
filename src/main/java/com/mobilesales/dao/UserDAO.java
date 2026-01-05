@@ -1,25 +1,27 @@
 package com.mobilesales.dao;
 
+import com.mobilesales.config.DBConfig;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
-import com.mobilesales.config.DBConfig;
 
 public class UserDAO {
 
-    public static String getPasswordByUsername(String username) throws Exception {
-        String sql = "SELECT password FROM users WHERE username=?";
+    public boolean registerUser(String username, String password) {
+
+        String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+
         try (Connection con = DBConfig.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, username);
-            ResultSet rs = ps.executeQuery();
+            ps.setString(2, password);
 
-            if (rs.next()) {
-                return rs.getString("password");
-            }
+            ps.executeUpdate();
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
-        return null;
     }
 }
