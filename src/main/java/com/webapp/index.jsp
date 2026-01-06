@@ -21,7 +21,7 @@
         <!-- iPhone -->
         <div class="col-md-4">
             <div class="card product-card">
-                <img src="https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-1.jpg"
+                <img src="https://i.ebayimg.com/images/g/~mMAAeSwiM1pW27a/s-l1600.webp"
                      class="card-img-top" alt="iPhone 15">
                 <div class="card-body text-center">
                     <h5>iPhone 15</h5>
@@ -34,7 +34,7 @@
         <!-- Samsung -->
         <div class="col-md-4">
             <div class="card product-card">
-                <img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s24-1.jpg"
+                <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTEbUABgR4fpqepktt017IPDG755DiGPskZdBUMoVC4GrmRNALaUs-Q26YVQJV7IDVvzEB0SWRo1QqGei_Zq6SWVerAoAWFGP3ISyDl5VeV5Cvzaf16TflWA7DryE7NsR0fpSi4Qg&usqp=CAc"
                      class="card-img-top" alt="Samsung S24">
                 <div class="card-body text-center">
                     <h5>Samsung Galaxy S24</h5>
