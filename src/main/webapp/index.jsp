@@ -57,8 +57,8 @@
     </div>
 
     <div class="card">
-        <img src="images/realme-gt.jpg">
-        <h3>Realme GT</h3>
+        <img src="https://fdn2.gsmarena.com/vv/bigpic/realme-gt6.jpg">
+        <h3>Realme GT 6T</h3>
         <p class="price">₹25,999</p>
         <div class="qty">
             <button onclick="decrease(this)">−</button>
@@ -69,8 +69,8 @@
     </div>
 
     <div class="card">
-        <img src="images/iqoo-neo.jpg">
-        <h3>iQOO Neo</h3>
+        <img src="https://i.ebayimg.com/images/g/I~cAAOSwMxxn0yMp/s-l1200.jpg">
+        <h3>iQOO Neo 10R</h3>
         <p class="price">₹29,999</p>
         <div class="qty">
             <button onclick="decrease(this)">−</button>
@@ -81,7 +81,7 @@
     </div>
 
     <div class="card">
-        <img src="images/oneplus-12.jpg">
+        <img src="https://pdaplaza.ca/wp-content/uploads/2025/10/911f10e96779af19ec91cedffda18a3e-1835699554.jpg">
         <h3>OnePlus 12</h3>
         <p class="price">₹64,999</p>
         <div class="qty">
