@@ -91,7 +91,7 @@
         </div>
         <button class="buy">Buy Now</button>
     </div>
-     <div class="pack">
+     <div class="card">
         <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/181/18190/18190260.jpg">
         <h3>pixel 9pro</h3>
         <p class="price">₹64,999</p>
@@ -102,7 +102,7 @@
         </div>
         <button class="buy">Buy Now</button>
     </div>
-     <div class="ing">
+     <div class="card">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtnjiAxtjZU0Ofgp7KyDk1T_f_543KfFIZ7A&s">
         <h3>Iphone 17 pro</h3>
         <p class="price">₹64,999</p>
