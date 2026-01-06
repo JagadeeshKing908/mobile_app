@@ -1,22 +1,24 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f4f6f8;
+    background: #f5f7fa;
 }
 
 header {
-    background: #1f2933;
+    background: #111827;
     color: white;
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.login-btn {
-    background: #2563eb;
-    padding: 8px 16px;
+.auth a {
     color: white;
     text-decoration: none;
+    margin-left: 15px;
+    background: #2563eb;
+    padding: 8px 14px;
     border-radius: 6px;
 }
 
@@ -26,34 +28,34 @@ header {
 
 .product-container {
     display: flex;
-    gap: 30px;
-    padding: 30px;
     flex-wrap: wrap;
+    gap: 25px;
+    padding: 30px;
 }
 
 .card {
     background: white;
-    width: 240px;
+    width: 220px;
     border-radius: 12px;
     padding: 15px;
     text-align: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
     transition: transform 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
 }
 
-.product-img {
+.card img {
     width: 100%;
-    height: 220px;
-    object-fit: cover;
-    transition: transform 0.4s;
+    height: 160px;
+    object-fit: contain;
+    transition: transform 0.3s;
 }
 
-.product-img:hover {
-    transform: rotateY(15deg) scale(1.05);
+.card img:hover {
+    transform: scale(1.05) rotateY(10deg);
 }
 
 .price {
@@ -69,9 +71,8 @@ header {
 }
 
 .qty button {
-    width: 30px;
-    height: 30px;
-    font-size: 18px;
+    width: 28px;
+    height: 28px;
 }
 
 .buy {
