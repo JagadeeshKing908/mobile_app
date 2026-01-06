@@ -1,23 +1,57 @@
 body {
-    background: #f4f4f4;
-    font-family: Arial;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
 }
 
-.login-box {
-    width: 300px;
-    margin: 150px auto;
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+.title {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.mobile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.mobile-card {
     background: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px #aaa;
-}
-
-.login-box h2 {
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     text-align: center;
 }
 
-.login-box input, button {
+.mobile-card img {
     width: 100%;
-    margin-top: 10px;
-    padding: 8px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.mobile-card h3 {
+    margin: 10px 0;
+}
+
+.mobile-card p {
+    color: green;
+    font-weight: bold;
+}
+
+.mobile-card button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.mobile-card button:hover {
+    background: #0056b3;
 }
