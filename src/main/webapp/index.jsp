@@ -1,67 +1,98 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Mobile Store</title>
+    <title>MobileStore</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/cart.js" defer></script>
 </head>
 <body>
 
-<header class="navbar">
-    <h1>Mobile Store</h1>
-    <nav>
-        <a href="#">Login</a>
-        <a href="#">Register</a>
-    </nav>
+<header>
+    <h1>MobileStore</h1>
+    <div class="auth">
+        <a href="login.jsp">Login</a>
+        <a href="register.jsp">Register</a>
+    </div>
 </header>
 
-<main>
-    <h2 class="heading">Latest Mobiles</h2>
+<h2 class="title">Latest Mobiles</h2>
 
-    <section class="products">
+<div class="product-container">
 
-        <article class="card">
-            <img src="images/iphone15.jpg" alt="iPhone 15">
-            <h3>iPhone 15</h3>
-            <p class="price">₹79,999</p>
-            <div class="actions">
-                <button>+</button>
-                <button>-</button>
-            </div>
-        </article>
+    <div class="card">
+        <img src="images/iphone15.jpg">
+        <h3>iPhone 15</h3>
+        <p class="price">₹79,999</p>
+        <div class="qty">
+            <button onclick="decrease(this)">−</button>
+            <span>0</span>
+            <button onclick="increase(this)">+</button>
+        </div>
+        <button class="buy">Buy Now</button>
+    </div>
 
-        <article class="card">
-            <img src="images/samsung-s24.jpg" alt="Samsung S24">
-            <h3>Samsung Galaxy S24</h3>
-            <p class="price">₹69,999</p>
-            <div class="actions">
-                <button>+</button>
-                <button>-</button>
-            </div>
-        </article>
+    <div class="card">
+        <img src="images/samsung-s24.jpg">
+        <h3>Samsung Galaxy S24</h3>
+        <p class="price">₹69,999</p>
+        <div class="qty">
+            <button onclick="decrease(this)">−</button>
+            <span>0</span>
+            <button onclick="increase(this)">+</button>
+        </div>
+        <button class="buy">Buy Now</button>
+    </div>
 
-        <article class="card">
-            <img src="images/redmi-note13.jpg" alt="Redmi Note 13">
-            <h3>Redmi Note 13</h3>
-            <p class="price">₹24,999</p>
-            <div class="actions">
-                <button>+</button>
-                <button>-</button>
-            </div>
-        </article>
+    <div class="card">
+        <img src="images/redmi-note13.jpg">
+        <h3>Redmi Note 13</h3>
+        <p class="price">₹21,999</p>
+        <div class="qty">
+            <button onclick="decrease(this)">−</button>
+            <span>0</span>
+            <button onclick="increase(this)">+</button>
+        </div>
+        <button class="buy">Buy Now</button>
+    </div>
 
-        <article class="card">
-            <img src="images/iqoo-neo9.jpg" alt="iQOO Neo 9">
-            <h3>iQOO Neo 9</h3>
-            <p class="price">₹34,999</p>
-            <div class="actions">
-                <button>+</button>
-                <button>-</button>
-            </div>
-        </article>
+    <div class="card">
+        <img src="images/realme-gt.jpg">
+        <h3>Realme GT</h3>
+        <p class="price">₹25,999</p>
+        <div class="qty">
+            <button onclick="decrease(this)">−</button>
+            <span>0</span>
+            <button onclick="increase(this)">+</button>
+        </div>
+        <button class="buy">Buy Now</button>
+    </div>
 
-    </section>
-</main>
+    <div class="card">
+        <img src="images/iqoo-neo.jpg">
+        <h3>iQOO Neo</h3>
+        <p class="price">₹29,999</p>
+        <div class="qty">
+            <button onclick="decrease(this)">−</button>
+            <span>0</span>
+            <button onclick="increase(this)">+</button>
+        </div>
+        <button class="buy">Buy Now</button>
+    </div>
+
+    <div class="card">
+        <img src="images/oneplus-12.jpg">
+        <h3>OnePlus 12</h3>
+        <p class="price">₹64,999</p>
+        <div class="qty">
+            <button onclick="decrease(this)">−</button>
+            <span>0</span>
+            <button onclick="increase(this)">+</button>
+        </div>
+        <button class="buy">Buy Now</button>
+    </div>
+
+</div>
 
 </body>
 </html>
