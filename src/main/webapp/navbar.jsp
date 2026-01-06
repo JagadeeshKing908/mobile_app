@@ -1,6 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="index.jsp">MobileStore</a>
-        <a class="btn btn-outline-light" href="register.jsp">Register</a>
-    </div>
-</nav>
+<div style="background:#172337;color:white;padding:10px">
+  <span style="font-size:20px">MobileStore</span>
+
+  <span style="float:right">
+    <%
+      if (session.getAttribute("username") == null) {
+    %>
+        <a href="login.jsp" style="color:white">Login</a>
+    <%
+      } else {
+    %>
+        Welcome ${sessionScope.username}
+        <a href="logout.jsp" style="color:white;margin-left:10px">Logout</a>
+    <%
+      }
+    %>
+  </span>
+</div>
