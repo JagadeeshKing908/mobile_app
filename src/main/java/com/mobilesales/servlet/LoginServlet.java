@@ -2,31 +2,37 @@ package com.mobilesales.servlet;
 
 import com.mobilesales.dao.UserDAO;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.*;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        try {
+            String username = req.getParameter("username");
+            String password = req.getParameter("password");
 
-        UserDAO dao = new UserDAO();
-        String dbPassword = dao.getPasswordByUsername(username);
+            UserDAO dao = new UserDAO();
+            String role = dao.login(username, password);
 
-        if (dbPassword != null && dbPassword.equals(password)) {
-            response.sendRedirect("home.html");
-        } else {
-            response.sendRedirect("index.html?error=invalid");
+            if (role != null) {
+                HttpSession session = req.getSession();
+                session.setAttribute("username", username);
+                session.setAttribute("role", role);
+
+                if ("ADMIN".equals(role)) {
+                    res.sendRedirect("admin.jsp");
+                } else {
+                    res.sendRedirect("mobiles");
+                }
+            } else {
+                res.sendRedirect("login.jsp?error=1");
+            }
+        } catch (Exception e) {
+            throw new ServletException(e);
         }
-
-    } // end of doPost
-
-} // end of LoginServlet class
+    }
+}
