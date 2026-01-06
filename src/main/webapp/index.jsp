@@ -10,16 +10,18 @@
 
 <header>
     <h1>MobileStore</h1>
-    <a href="login.jsp" class="login-btn">Login</a>
+    <div class="auth">
+        <a href="login.jsp">Login</a>
+        <a href="register.jsp">Register</a>
+    </div>
 </header>
 
 <h2 class="title">Latest Mobiles</h2>
 
 <div class="product-container">
 
-    <!-- iPhone -->
     <div class="card">
-        <img src="https://m.media-amazon.com/images/I/51-dI0OmzyL.jpg" class="product-img">
+        <img src="images/iphone15.jpg">
         <h3>iPhone 15</h3>
         <p class="price">₹79,999</p>
         <div class="qty">
@@ -30,10 +32,9 @@
         <button class="buy">Buy Now</button>
     </div>
 
-    <!-- Samsung -->
     <div class="card">
-        <img src="https://m.media-amazon.com/images/I/61Z+OYjhOoL._AC_UF894,1000_QL80_.jpg" class="product-img">
-        <h3>Samsung Galaxy S24 ultra</h3>
+        <img src="images/samsung-s24.jpg">
+        <h3>Samsung Galaxy S24</h3>
         <p class="price">₹69,999</p>
         <div class="qty">
             <button onclick="decrease(this)">−</button>
@@ -43,11 +44,10 @@
         <button class="buy">Buy Now</button>
     </div>
 
-    <!-- Redmi -->
     <div class="card">
-        <img src="https://www.progresif.com/media/catalog/product/cache/a57e14b7b22013b5665a7323ba2dcb64/r/e/redmi_13_pro_midnight_black.png" class="product-img">
+        <img src="images/redmi-note13.jpg">
         <h3>Redmi Note 13</h3>
-        <p class="price">₹41,999</p>
+        <p class="price">₹21,999</p>
         <div class="qty">
             <button onclick="decrease(this)">−</button>
             <span>0</span>
@@ -56,11 +56,10 @@
         <button class="buy">Buy Now</button>
     </div>
 
-    <!-- Realme -->
     <div class="card">
-        <img src="https://static2.realme.net/images/realme-gt-6/point/m/7.jpg" class="product-img">
-        <h3>Realme GT 6</h3>
-        <p class="price">₹35,999</p>
+        <img src="images/realme-gt.jpg">
+        <h3>Realme GT</h3>
+        <p class="price">₹25,999</p>
         <div class="qty">
             <button onclick="decrease(this)">−</button>
             <span>0</span>
@@ -69,10 +68,9 @@
         <button class="buy">Buy Now</button>
     </div>
 
-    <!-- iQOO -->
     <div class="card">
-        <img src="https://i.ebayimg.com/images/g/I~cAAOSwMxxn0yMp/s-l1200.jpg" class="product-img">
-        <h3>iQOO Neo 10R</h3>
+        <img src="images/iqoo-neo.jpg">
+        <h3>iQOO Neo</h3>
         <p class="price">₹29,999</p>
         <div class="qty">
             <button onclick="decrease(this)">−</button>
@@ -82,7 +80,14 @@
         <button class="buy">Buy Now</button>
     </div>
 
-</div>
-
-</body>
-</html>
+    <div class="card">
+        <img src="images/oneplus-12.jpg">
+        <h3>OnePlus 12</h3>
+        <p class="price">₹64,999</p>
+        <div class="qty">
+            <button onclick="decrease(this)">−</button>
+            <span>0</span>
+            <button onclick="increase(this)">+</button>
+        </div>
+        <button class="buy">Buy Now</button>
+    </div>
