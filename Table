@@ -53,6 +53,22 @@ CREATE TABLE mobiles (
 
 ALTER TABLE users ADD role VARCHAR(20) DEFAULT 'USER';
 
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO 'mobileuser'@'%' IDENTIFIED BY 'Mobile@123';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> SELECT user, host FROM mysql.user;
++-------------+-----------+
+| User        | Host      |
++-------------+-----------+
+| mobileuser  | %         |
+| mariadb.sys | localhost |
+| mysql       | localhost |
+| root        | localhost |
++-------------+-----------+
+4 rows in set (0.001 sec)
+
+MariaDB [(none)]> 
+
 4️⃣ OPTIONAL (ADMIN USERS) :-
 -----------------------------
 
