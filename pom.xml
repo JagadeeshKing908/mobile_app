@@ -22,7 +22,7 @@
 
     <dependencies>
 
-        <!-- Servlet API (provided by Tomcat) -->
+        <!-- Servlet API (Provided by Tomcat) -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -30,44 +30,26 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- JSP JSTL (REQUIRED) -->
+        <!-- JSP JSTL -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
 
-        <!-- MySQL Connector -->
+        <!-- MySQL JDBC Driver -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
             <version>8.0.33</version>
         </dependency>
-             <!-- BCrypt password hashing -->
+
+        <!-- BCrypt -->
         <dependency>
             <groupId>org.mindrot</groupId>
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
         </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
-         </dependency>
-         <dependency>
-            <groupId>org.mariadb.jdbc</groupId>
-            <artifactId>mariadb-java-client</artifactId>
-            <version>3.3.3</version>
-         </dependency>
-         <dependency>
-             <groupId>com.mysql</groupId>
-             <artifactId>mysql-connector-j</artifactId>
-             <version>8.0.33</version>
-          </dependency>
-
-
-
 
     </dependencies>
 
