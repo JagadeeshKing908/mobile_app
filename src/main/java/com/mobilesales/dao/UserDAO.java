@@ -1,42 +1,50 @@
 package com.mobilesales.dao;
 
+import com.mobilesales.config.DBConfig;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.mobilesales.config.DBConfig;
-
 public class UserDAO {
 
-    public void registerUser(String username, String email, String password) throws Exception {
+    // REGISTER USER
+    public void registerUser(String username, String password, String email) {
+        String sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
 
-        Connection con = DBConfig.getConnection();
+        try (Connection con = DBConfig.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-        String sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+            ps.setString(1, username);
+            ps.setString(2, password); // plain password for now
+            ps.setString(3, email);
+            ps.executeUpdate();
 
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, username);
-        ps.setString(2, email);
-        ps.setString(3, password);
-
-        ps.executeUpdate();
-        con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public boolean validateUser(String username, String password) throws Exception {
+    // LOGIN USER ✅ (THIS WAS MISSING)
+    public boolean login(String username, String password) {
 
-        Connection con = DBConfig.getConnection();
+        String sql = "SELECT password FROM users WHERE username = ?";
 
-        String sql = "SELECT id FROM users WHERE username=? AND password=?";
-        PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection con = DBConfig.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-        ps.setString(1, username);
-        ps.setString(2, password);
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
 
-        ResultSet rs = ps.executeQuery();
-        boolean exists = rs.next();
+            if (rs.next()) {
+                String dbPassword = rs.getString("password");
+                return dbPassword.equals(password);
+            }
 
-        con.close();
-        return exists;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }
