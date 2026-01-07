@@ -17,10 +17,13 @@ public class LoginServlet extends HttpServlet {
 
         try {
             if (dao.login(username, password)) {
-                HttpSession session = request.getSession();
+                // Create a new session if login succeeds
+                HttpSession session = request.getSession(true);
                 session.setAttribute("username", username);
+                // Redirect with success message
                 response.sendRedirect("index.jsp?loginSuccess=true");
             } else {
+                // Redirect with error message
                 response.sendRedirect("index.jsp?loginError=true");
             }
         } catch (Exception e) {
