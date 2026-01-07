@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class DBConfig {
 
     private static final String URL =
-        "jdbc:mysql://<DB_PRIVATE_IP>:3306/mobilesales?useSSL=false&allowPublicKeyRetrieval=true";
+        "jdbc:mysql://172.31.5.224:3306/mobilesales?useSSL=false&allowPublicKeyRetrieval=true";
 
     private static final String USER = "mobileuser";
     private static final String PASSWORD = "123";
