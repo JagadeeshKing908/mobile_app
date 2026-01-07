@@ -6,21 +6,24 @@ import java.sql.*;
 public class UserDAO {
 
     // REGISTER USER
-    public void registerUser(String username, String password, String email) throws SQLException {
+    public void registerUser(String username, String password, String email) throws Exception {
         String sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
+
         try (Connection con = DBConfig.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, username);
-            ps.setString(2, password); // TODO: Hash the password for production
+            ps.setString(2, password);   // Plain for now (OK for learning)
             ps.setString(3, email);
+
             ps.executeUpdate();
         }
     }
 
     // LOGIN USER
-    public boolean login(String username, String password) throws SQLException {
+    public boolean login(String username, String password) throws Exception {
         String sql = "SELECT password FROM users WHERE username = ?";
+
         try (Connection con = DBConfig.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
@@ -28,8 +31,7 @@ public class UserDAO {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                String dbPassword = rs.getString("password");
-                return dbPassword.equals(password);
+                return rs.getString("password").equals(password);
             }
         }
         return false;
