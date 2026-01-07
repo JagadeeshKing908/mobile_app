@@ -1,17 +1,28 @@
+package com.mobilesales.servlet;
+
+import com.mobilesales.dao.UserDAO;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest req, HttpServletResponse res)
-            throws IOException {
 
-        try {
-            new UserDAO().register(
-                req.getParameter("username"),
-                req.getParameter("password"),
-                req.getParameter("email")
-            );
-            res.sendRedirect("index.jsp?registerSuccess=true");
-        } catch (Exception e) {
-            res.sendRedirect("index.jsp?registerError=true");
-        }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        UserDAO dao = new UserDAO();
+        dao.registerUser(name, email, password);
+
+        response.sendRedirect("login.jsp");
     }
 }
