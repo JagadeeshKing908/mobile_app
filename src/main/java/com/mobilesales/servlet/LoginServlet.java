@@ -2,35 +2,31 @@ package com.mobilesales.servlet;
 
 import com.mobilesales.dao.UserDAO;
 
-import javax.servlet.*;
+import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse res)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
-            String username = req.getParameter("username");
-            String password = req.getParameter("password");
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
 
             UserDAO dao = new UserDAO();
-            String role = dao.login(username, password);
 
-            if (role != null) {
-                HttpSession session = req.getSession();
+            boolean isValid = dao.validateUser(username, password);
+
+            if (isValid) {
+                HttpSession session = request.getSession();
                 session.setAttribute("username", username);
-                session.setAttribute("role", role);
-
-                if ("ADMIN".equals(role)) {
-                    res.sendRedirect("admin.jsp");
-                } else {
-                    res.sendRedirect("mobiles");
-                }
+                response.sendRedirect("index.jsp");
             } else {
-                res.sendRedirect("login.jsp?error=1");
+                response.sendRedirect("login.jsp?error=1");
             }
+
         } catch (Exception e) {
             throw new ServletException(e);
         }
