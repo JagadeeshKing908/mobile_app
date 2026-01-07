@@ -1,31 +1,33 @@
 package com.mobilesales.dao;
 
 import com.mobilesales.config.DBConfig;
-import org.mindrot.jbcrypt.BCrypt;
-
 import java.sql.*;
 
 public class UserDAO {
 
-    public void register(String username, String password, String email) throws Exception {
-
-        String hash = BCrypt.hashpw(password, BCrypt.gensalt());
-
-        String sql = "INSERT INTO users(username,password,email) VALUES(?,?,?)";
+    // REGISTER USER
+    public boolean registerUser(String username, String password, String email) {
+        String sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
 
         try (Connection con = DBConfig.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, username);
-            ps.setString(2, hash);
+            ps.setString(2, password);
             ps.setString(3, email);
+
             ps.executeUpdate();
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
-    public boolean login(String username, String password) throws Exception {
-
-        String sql = "SELECT password FROM users WHERE username=?";
+    // VALIDATE LOGIN
+    public boolean validateUser(String username, String password) {
+        String sql = "SELECT password FROM users WHERE username = ?";
 
         try (Connection con = DBConfig.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -34,8 +36,11 @@ public class UserDAO {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                return BCrypt.checkpw(password, rs.getString("password"));
+                return rs.getString("password").equals(password);
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }
