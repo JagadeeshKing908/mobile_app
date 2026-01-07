@@ -13,13 +13,15 @@ header {
     align-items: center;
 }
 
-.auth a {
+.auth a, .auth button {
     color: white;
     text-decoration: none;
     margin-left: 15px;
     background: #2563eb;
     padding: 8px 14px;
     border-radius: 6px;
+    border: none;
+    cursor: pointer;
 }
 
 .title {
