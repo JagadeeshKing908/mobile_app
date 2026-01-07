@@ -1,7 +1,6 @@
 package com.mobilesales.servlet;
 
 import com.mobilesales.dao.UserDAO;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
@@ -17,14 +16,11 @@ public class LoginServlet extends HttpServlet {
         UserDAO dao = new UserDAO();
 
         if (dao.login(username, password)) {
-
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
-
-            response.sendRedirect("index.jsp");
-
+            response.sendRedirect("index.jsp?loginSuccess=true");
         } else {
-            response.sendRedirect("login.jsp?error=invalid");
+            response.sendRedirect("index.jsp?loginError=true");
         }
     }
 }
