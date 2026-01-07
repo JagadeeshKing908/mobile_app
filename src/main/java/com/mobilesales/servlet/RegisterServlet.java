@@ -15,12 +15,10 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
 
         UserDAO dao = new UserDAO();
-
-        boolean success = dao.registerUser(username, password, email);
-
-        if (success) {
+        try {
+            dao.registerUser(username, password, email);
             response.sendRedirect("index.jsp?registerSuccess=true");
-        } else {
+        } catch (Exception e) {
             response.sendRedirect("index.jsp?registerError=true");
         }
     }
