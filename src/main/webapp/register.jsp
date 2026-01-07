@@ -10,12 +10,13 @@
 
 <div class="container mt-5" style="max-width:400px;">
     <h4>Create Account</h4>
-    <form action="register" method="post">
-        <input class="form-control mb-3" name="username" placeholder="email" required>
-        <input class="form-control mb-3" type="password" name="password" placeholder="Password" required>
-        <input class="form-control mb-3" type="password" name="password" placeholder="Confirm your Password" required>
-        <button class="btn btn-success w-100">Register</button>
-    </form>
+<form action="register" method="post">
+    Username: <input type="text" name="username" required><br><br>
+    Email: <input type="email" name="email" required><br><br>
+    Password: <input type="password" name="password" required><br><br>
+    <button type="submit">Register</button>
+</form>
+
 </div>
 
 </body>
