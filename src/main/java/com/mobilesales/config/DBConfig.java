@@ -5,9 +5,11 @@ import java.sql.DriverManager;
 
 public class DBConfig {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/mobilesales";
-    private static final String USER = "root";
-    private static final String PASSWORD = "password";
+    private static final String URL =
+        "jdbc:mysql://<DB_PRIVATE_IP>:3306/mobilesales?useSSL=false&allowPublicKeyRetrieval=true";
+
+    private static final String USER = "mobileuser";
+    private static final String PASSWORD = "123";
 
     public static Connection getConnection() throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
