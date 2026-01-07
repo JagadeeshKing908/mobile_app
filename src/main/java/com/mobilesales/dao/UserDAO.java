@@ -1,48 +1,27 @@
-package com.mobilesales.dao;
+package com.mobilesales.servlet;
 
-import com.mobilesales.config.DBConfig;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import com.mobilesales.dao.UserDAO;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.IOException;
 
-public class UserDAO {
+public class RegisterServlet extends HttpServlet {
 
-    // REGISTER USER
-    public void registerUser(String username, String password, String email) {
-        String sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
-        try (Connection con = DBConfig.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-            ps.setString(1, username.trim());
-            ps.setString(2, password.trim());
-            ps.setString(3, email.trim());
-            ps.executeUpdate();
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error registering user: " + e.getMessage());
+        UserDAO dao = new UserDAO();
+
+        boolean success = dao.registerUser(username, password, email);
+
+        if (success) {
+            response.sendRedirect("index.jsp?registerSuccess=true");
+        } else {
+            response.sendRedirect("index.jsp?registerError=true");
         }
-    }
-
-    // LOGIN USER
-    public boolean login(String username, String password) {
-        String sql = "SELECT password FROM users WHERE LOWER(username) = LOWER(?)";
-        try (Connection con = DBConfig.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-
-            ps.setString(1, username.trim());
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                String dbPassword = rs.getString("password").trim();
-                return dbPassword.equals(password.trim());
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error during login: " + e.getMessage());
-        }
-        return false;
     }
 }
