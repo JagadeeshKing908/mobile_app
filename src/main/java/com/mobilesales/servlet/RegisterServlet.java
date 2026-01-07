@@ -2,7 +2,7 @@ package com.mobilesales.servlet;
 
 import com.mobilesales.dao.UserDAO;
 
-import javax.servlet.ServletException;
+import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
 
@@ -11,18 +11,16 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        try {
-            String username = request.getParameter("username");
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
 
-            UserDAO dao = new UserDAO();
-            dao.registerUser(username, email, password);
+        UserDAO dao = new UserDAO();
+        dao.registerUser(username, password, email);
 
-            response.sendRedirect("login.jsp");
+        HttpSession session = request.getSession();
+        session.setAttribute("username", username);
 
-        } catch (Exception e) {
-            throw new ServletException(e);
-        }
+        response.sendRedirect("index.jsp");
     }
 }
