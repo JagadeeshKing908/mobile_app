@@ -2,6 +2,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+   <%
+    String user = (String) session.getAttribute("username");
+    if (user == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+   %>
+   <h3>Welcome, <%= session.getAttribute("username") %></h3>
+
+
     <title>MobileStore</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/cart.js" defer></script>
