@@ -8,35 +8,20 @@ import java.sql.SQLException;
 
 public class UserDAO {
 
-    // REGISTER USER
-    public void registerUser(String username, String password, String email) {
-        String sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
-        try (Connection con = DBConfig.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-
-            ps.setString(1, username);
-            ps.setString(2, password); // TODO: Hash password for production
-            ps.setString(3, email);
-            ps.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error registering user: " + e.getMessage());
-        }
-    }
-
     // LOGIN USER
     public boolean login(String username, String password) {
-        String sql = "SELECT password FROM users WHERE username = ?";
+        String sql = "SELECT password FROM users WHERE LOWER(username) = LOWER(?)";
         try (Connection con = DBConfig.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, username);
+            ps.setString(1, username.trim()); // trim to avoid spaces
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                String dbPassword = rs.getString("password");
-                return dbPassword.equals(password);
+                String dbPassword = rs.getString("password").trim(); // trim db value
+                return dbPassword.equals(password.trim()); // compare trimmed values
+            } else {
+                System.out.println("Username not found: " + username);
             }
 
         } catch (SQLException e) {
