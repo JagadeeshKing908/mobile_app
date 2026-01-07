@@ -1,49 +1,50 @@
 package com.mobilesales.dao;
 
 import com.mobilesales.config.DBConfig;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class UserDAO {
 
-    private static final String INSERT_USER_SQL = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
-    private static final String SELECT_USER_BY_USERNAME = "SELECT * FROM users WHERE username = ?";
+    // REGISTER USER
+    public void registerUser(String username, String password, String email) {
+        String sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
 
-    public UserDAO() {}
+        try (Connection con = DBConfig.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-    // Use DBConfig for connection
-    protected Connection getConnection() throws SQLException {
-        return DBConfig.getConnection();
-    }
+            ps.setString(1, username);
+            ps.setString(2, password); // plain password for now
+            ps.setString(3, email);
+            ps.executeUpdate();
 
-    // Register user
-    public boolean registerUser(String username, String password, String email) {
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER_SQL)) {
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
-            preparedStatement.setString(3, email);
-            return preparedStatement.executeUpdate() > 0;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
     }
 
-    // Validate user login
-    public boolean validateUser(String username, String password) {
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_USERNAME)) {
-            preparedStatement.setString(1, username);
-            ResultSet rs = preparedStatement.executeQuery();
+    // LOGIN USER ✅ (THIS WAS MISSING)
+    public boolean login(String username, String password) {
+
+        String sql = "SELECT password FROM users WHERE username = ?";
+
+        try (Connection con = DBConfig.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+
             if (rs.next()) {
-                return rs.getString("password").equals(password);
+                String dbPassword = rs.getString("password");
+                return dbPassword.equals(password);
             }
-        } catch (SQLException e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
         return false;
     }
 }
