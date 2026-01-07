@@ -1,38 +1,42 @@
 package com.mobilesales.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import com.mobilesales.config.DBConfig;
-import java.sql.*;
 
 public class UserDAO {
 
-    // LOGIN (already used)
-    public String login(String username, String password) throws Exception {
+    public void registerUser(String username, String email, String password) throws Exception {
+
         Connection con = DBConfig.getConnection();
-        PreparedStatement ps =
-            con.prepareStatement("SELECT role FROM users WHERE username=? AND password=?");
+
+        String sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, username);
+        ps.setString(2, email);
+        ps.setString(3, password);
+
+        ps.executeUpdate();
+        con.close();
+    }
+
+    public boolean validateUser(String username, String password) throws Exception {
+
+        Connection con = DBConfig.getConnection();
+
+        String sql = "SELECT id FROM users WHERE username=? AND password=?";
+        PreparedStatement ps = con.prepareStatement(sql);
 
         ps.setString(1, username);
         ps.setString(2, password);
 
         ResultSet rs = ps.executeQuery();
-        if (rs.next()) {
-            return rs.getString("role");
-        }
-        return null;
-    }
+        boolean exists = rs.next();
 
-    // ✅ REGISTER USER (THIS WAS MISSING)
-    public boolean registerUser(String username, String password) throws Exception {
-        Connection con = DBConfig.getConnection();
-        PreparedStatement ps =
-            con.prepareStatement(
-                "INSERT INTO users(username, password, role) VALUES(?,?,?)"
-            );
-
-        ps.setString(1, username);
-        ps.setString(2, password);
-        ps.setString(3, "USER");
-
-        return ps.executeUpdate() > 0;
+        con.close();
+        return exists;
     }
 }
