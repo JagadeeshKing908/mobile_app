@@ -33,27 +33,12 @@
     <% if(request.getParameter("registerSuccess") != null){ %>
         <div class="alert alert-success">Registration successful! You can now login.</div>
     <% } %>
-</div>
-
-<h2 class="title">Latest Mobiles</h2>
-
-<div class="product-container">
-
-    <!-- Example product card -->
-    <div class="card">
-        <img src="https://www.dxomark.com/wp-content/uploads/medias/post-157904/Apple-iPhone-15_-blue_featured-image-packshot-review.jpg">
-        <h3>iPhone 15</h3>
-        <p class="price">₹79,999</p>
-        <div class="qty">
-            <button onclick="decrease(this)">−</button>
-            <span>0</span>
-            <button onclick="increase(this)">+</button>
-        </div>
-        <button class="buy">Buy Now</button>
-    </div>
-
-    <!-- Add other product cards here -->
-
+    <% if(request.getParameter("loginError") != null){ %>
+        <div class="alert alert-danger">Login failed! Invalid username or password.</div>
+    <% } %>
+    <% if(request.getParameter("registerError") != null){ %>
+        <div class="alert alert-danger">Registration failed! Username may already exist.</div>
+    <% } %>
 </div>
 
 <!-- LOGIN MODAL -->
@@ -74,9 +59,6 @@
             <label>Password</label>
             <input type="password" name="password" class="form-control" required>
           </div>
-          <% if(request.getParameter("loginError") != null){ %>
-              <p class="text-danger">Login failed! Invalid username or password.</p>
-          <% } %>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Login</button>
@@ -109,9 +91,6 @@
             <label>Password</label>
             <input type="password" name="password" class="form-control" required>
           </div>
-          <% if(request.getParameter("registerError") != null){ %>
-              <p class="text-danger">Registration failed! Username may already exist.</p>
-          <% } %>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-success">Register</button>
