@@ -1,15 +1,28 @@
-@WebServlet("/mobile")
+package com.mobilesales.servlet;
+
+import com.mobilesales.dao.MobileDAO;
+import com.mobilesales.model.Mobile;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+
+@WebServlet("/mobile-details")
 public class MobileDetailsServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest req, HttpServletResponse res)
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        try {
-            int id = Integer.parseInt(req.getParameter("id"));
-            Mobile mobile = new MobileDAO().getMobileById(id);
-            req.setAttribute("mobile", mobile);
-            req.getRequestDispatcher("mobile.jsp").forward(req, res);
-        } catch (Exception e) {
-            throw new ServletException(e);
-        }
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        MobileDAO dao = new MobileDAO();
+        Mobile mobile = dao.getMobileById(id);
+
+        request.setAttribute("mobile", mobile);
+        request.getRequestDispatcher("mobile-details.jsp").forward(request, response);
     }
 }
