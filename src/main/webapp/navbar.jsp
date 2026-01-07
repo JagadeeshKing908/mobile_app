@@ -1,18 +1,11 @@
-<div style="background:#172337;color:white;padding:10px">
-  <span style="font-size:20px">MobileStore</span>
-
+<div style="background:#111;color:white;padding:10px">
+  MobileStore
   <span style="float:right">
-    <%
-      if (session.getAttribute("username") == null) {
-    %>
-        <a href="login.jsp" style="color:white">Login</a>
-    <%
-      } else {
-    %>
-        Welcome ${sessionScope.username}
-        <a href="logout.jsp" style="color:white;margin-left:10px">Logout</a>
-    <%
-      }
-    %>
+    <% if(session.getAttribute("username")==null){ %>
+      Login / Register
+    <% } else { %>
+      Welcome <%=session.getAttribute("username")%>
+      <a href="logout">Logout</a>
+    <% } %>
   </span>
 </div>
