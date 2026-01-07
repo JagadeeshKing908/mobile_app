@@ -1,7 +1,8 @@
 Install and configure DB
 
 1)sudo dnf install mariadb105 -y
-2)sudo mysql_secure_installation
+2)sudo dnf install mariadb105-server -y
+3)sudo mysql_secure_installation
 
 Choose:
 
