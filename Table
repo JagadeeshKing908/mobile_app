@@ -2,6 +2,9 @@ Install and configure DB
 
 1)sudo dnf install mariadb105 -y
 2)sudo dnf install mariadb105-server -y
+   sudo systemctl start mariadb
+   sudo systemctl enable mariadb
+   systemctl status mariadb
 3)sudo mysql_secure_installation
 
 Choose:
@@ -12,21 +15,51 @@ Disallow remote root login → YES
 Remove test database → YES
 Reload privilege tables → YES
 
+4)sudo vi /etc/my.cnf.d/mariadb-server.cnf
 
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(50) UNIQUE,
-  password VARCHAR(255),
-  role VARCHAR(20)   -- ADMIN or USER
+Find:
+bind-address = 127.0.0.1
+Change to:
+bind-address = 0.0.0.0
+
+5)sudo systemctl restart mariadb
+6)[root@ip-172-31-13-211 ~]# ss -lntp | grep 3306
+LISTEN 0      80                 *:3306            *:*    users:(("mariadbd",pid=30128,fd=19))
+[root@ip-172-31-13-211 ~]#
+
+7)mysql -u root -p
+
+
+a)CREATE DATABASE mobilesales;
+
+b)USE mobilesales;
+
+c)CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-INSERT INTO users (username, password, role)
-VALUES ('admin', 'admin123', 'ADMIN');
 
 CREATE TABLE mobiles (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100),
-  price INT,
-  image_folder VARCHAR(100)
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    brand VARCHAR(50) NOT NULL,
+    model VARCHAR(100) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+ALTER TABLE users ADD role VARCHAR(20) DEFAULT 'USER';
+
+4️⃣ OPTIONAL (ADMIN USERS) :-
+-----------------------------
+
+If you want admin + user roles later:
+
+ALTER TABLE users ADD role VARCHAR(20) DEFAULT 'USER';
+
+Example:
+
+UPDATE users SET role='ADMIN' WHERE username='admin';
