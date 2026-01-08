@@ -9,6 +9,10 @@
 
 <header class="navbar">
     <h1>Mobile Store</h1>
+    <div class="nav-links">
+        <button class="nav-btn" onclick="openLogin()">Login</button>
+        <button class="nav-btn" onclick="openRegister()">Register</button>
+    </div>
 </header>
 
 <main>
@@ -16,7 +20,6 @@
 
     <section class="products">
 
-        <!-- PRODUCT CARD -->
         <article class="card">
             <img src="https://www.dxomark.com/wp-content/uploads/medias/post-157904/Apple-iPhone-15_-blue_featured-image-packshot-review.jpg">
             <h3>iPhone 15</h3>
@@ -84,6 +87,18 @@
         <input type="email" placeholder="Email">
         <input type="password" placeholder="Password">
         <button class="popup-btn">Login</button>
+    </div>
+</div>
+
+<!-- REGISTER POPUP -->
+<div id="registerPopup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">×</span>
+        <h2>Register</h2>
+        <input type="text" placeholder="Full Name">
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <button class="popup-btn">Register</button>
     </div>
 </div>
 
