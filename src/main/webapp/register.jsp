@@ -1,5 +1,7 @@
 <html>
 <body>
+<link rel="stylesheet" href="css/style.css">
+
 <h3>Register</h3>
 
 <form action="register" method="post">
