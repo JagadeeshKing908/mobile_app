@@ -1,6 +1,7 @@
 <html>
 <body>
 <h3>Login</h3>
+<link rel="stylesheet" href="css/style.css">
 
 <form action="login" method="post">
     Email: <input type="email" name="email" required><br>
