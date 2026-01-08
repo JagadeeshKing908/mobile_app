@@ -5,7 +5,8 @@ import java.sql.DriverManager;
 
 public class DBConfig {
 
-    private static final String URL = "jdbc:mysql://172.31.13.98:3306/mobilestore";
+    private static final String URL =
+        "jdbc:mysql://172.31.13.98:3306/mobilestore?useSSL=false&serverTimezone=UTC";
     private static final String USER = "mobileuser";
     private static final String PASSWORD = "Mobile@123";
 
