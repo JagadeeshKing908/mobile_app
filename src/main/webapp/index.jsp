@@ -1,67 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Mobile Store</title>
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'block';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+    </script>
 </head>
+
 <body>
 
 <header class="navbar">
     <h1>Mobile Store</h1>
     <nav>
-        <a href="#">Login</a>
-        <a href="#">Register</a>
+        <a href="#" onclick="openModal('loginModal')">Login</a>
+        <a href="#" onclick="openModal('registerModal')">Register</a>
     </nav>
 </header>
 
-<main>
-    <h2 class="heading">Latest Mobiles</h2>
+<% if ("true".equals(request.getParameter("error"))) { %>
+<p class="error">Invalid login credentials</p>
+<% } %>
 
-    <section class="products">
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+    <div class="modal-content">
+        <span onclick="closeModal('loginModal')" class="close">&times;</span>
+        <h3>Login</h3>
+        <form action="login" method="post">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</div>
 
-        <article class="card">
-            <img src="https://www.dxomark.com/wp-content/uploads/medias/post-157904/Apple-iPhone-15_-blue_featured-image-packshot-review.jpg" alt="iPhone 15">
-            <h3>iPhone 15</h3>
-            <p class="price">₹79,999</p>
-            <div class="actions">
-                <button>+</button>
-                <button>-</button>
-            </div>
-        </article>
-
-        <article class="card">
-            <img src="https://m.media-amazon.com/images/I/61Z+OYjhOoL._AC_UF894,1000_QL80_.jpg" alt="Samsung S24">
-            <h3>Samsung Galaxy S24</h3>
-            <p class="price">₹69,999</p>
-            <div class="actions">
-                <button>+</button>
-                <button>-</button>
-            </div>
-        </article>
-
-        <article class="card">
-            <img src="https://m.media-amazon.com/images/I/61vFWIksgcL.jpg" alt="Redmi Note 13">
-            <h3>Redmi Note 13</h3>
-            <p class="price">₹24,999</p>
-            <div class="actions">
-                <button>+</button>
-                <button>-</button>
-            </div>
-        </article>
-
-        <article class="card">
-            <img src="https://i.ebayimg.com/images/g/I~cAAOSwMxxn0yMp/s-l1200.jpg" alt="iQOO Neo 9">
-            <h3>iQOO Neo 10R</h3>
-            <p class="price">₹34,999</p>
-            <div class="actions">
-                <button>+</button>
-                <button>-</button>
-            </div>
-        </article>
-
-    </section>
-</main>
+<!-- REGISTER MODAL -->
+<div class="modal" id="registerModal">
+    <div class="modal-content">
+        <span onclick="closeModal('registerModal')" class="close">&times;</span>
+        <h3>Register</h3>
+        <form action="register" method="post">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>
