@@ -1,23 +1,21 @@
 package com.mobilesales.dao;
 
 import com.mobilesales.config.DBConfig;
-import com.mobilesales.util.PasswordUtil;
 import java.sql.*;
 
 public class UserDAO {
 
     public boolean validateUser(String email, String password) {
-        String sql = "SELECT password FROM users WHERE email=?";
-
-        try (Connection con = DBConfig.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+        try {
+            Connection con = DBConfig.getConnection();
+            PreparedStatement ps =
+                con.prepareStatement("SELECT * FROM users WHERE email=? AND password=?");
 
             ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
+            ps.setString(2, password);
 
-            if (rs.next()) {
-                return PasswordUtil.verifyPassword(password, rs.getString("password"));
-            }
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -26,13 +24,13 @@ public class UserDAO {
     }
 
     public boolean registerUser(String email, String password) {
-        String sql = "INSERT INTO users(email, password) VALUES (?, ?)";
-
-        try (Connection con = DBConfig.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+        try {
+            Connection con = DBConfig.getConnection();
+            PreparedStatement ps =
+                con.prepareStatement("INSERT INTO users(email,password) VALUES(?,?)");
 
             ps.setString(1, email);
-            ps.setString(2, PasswordUtil.hashPassword(password));
+            ps.setString(2, password);
             ps.executeUpdate();
             return true;
 
