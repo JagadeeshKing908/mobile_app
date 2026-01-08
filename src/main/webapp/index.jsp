@@ -2,45 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile Store</title>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- JS -->
-    <script src="js/popup.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header class="navbar">
     <h1>Mobile Store</h1>
     <nav>
-<nav>
-    <a href="javascript:void(0)" onclick="openLogin()">Login</a>
-    <a href="javascript:void(0)" onclick="openRegister()">Register</a>
-</nav>
-
-<div id="loginPopup" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closePopup()">&times;</span>
-        <h2>Login</h2>
-        <input type="text" placeholder="Username"><br>
-        <input type="password" placeholder="Password"><br>
-        <button class="btn-submit">Login</button>
-    </div>
-</div>
-
-<div id="registerPopup" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closePopup()">&times;</span>
-        <h2>Register</h2>
-        <input type="text" placeholder="Full Name"><br>
-        <input type="email" placeholder="Email"><br>
-        <input type="password" placeholder="Password"><br>
-        <button class="btn-submit">Sign Up</button>
-    </div>
-</div>
+        <a href="javascript:void(0)" onclick="openLogin()">Login</a>
+        <a href="javascript:void(0)" onclick="openRegister()">Register</a>
     </nav>
 </header>
 
@@ -48,9 +20,8 @@
     <h2 class="heading">Latest Mobiles</h2>
 
     <section class="products">
-
         <article class="card">
-            <img src="https://www.dxomark.com/wp-content/uploads/medias/post-157904/Apple-iPhone-15_-blue_featured-image-packshot-review.jpg">
+            <img src="https://www.dxomark.com/wp-content/uploads/medias/post-157904/Apple-iPhone-15_-blue_featured-image-packshot-review.jpg" alt="iPhone 15">
             <h3>iPhone 15</h3>
             <p class="price">₹79,999</p>
             <div class="actions">
@@ -60,7 +31,7 @@
         </article>
 
         <article class="card">
-            <img src="https://m.media-amazon.com/images/I/61Z+OYjhOoL._AC_UF894,1000_QL80_.jpg">
+            <img src="https://m.media-amazon.com/images/I/61Z+OYjhOoL._AC_UF894,1000_QL80_.jpg" alt="Samsung S24">
             <h3>Samsung Galaxy S24</h3>
             <p class="price">₹69,999</p>
             <div class="actions">
@@ -68,38 +39,34 @@
                 <button>-</button>
             </div>
         </article>
-
     </section>
 </main>
 
-<!-- LOGIN POPUP -->
-<div id="loginPopup" class="popup">
+<div id="loginPopup" class="popup-overlay">
     <div class="popup-box">
-        <span class="close" onclick="closePopup()">×</span>
+        <span class="close" onclick="closePopup()">&times;</span>
         <h3>Login</h3>
-
-        <form action="login" method="post">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="submit" value="Login">
+        <form>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <input type="submit" value="Login" class="btn-submit">
         </form>
     </div>
 </div>
 
-<!-- REGISTER POPUP -->
-<div id="registerPopup" class="popup">
+<div id="registerPopup" class="popup-overlay">
     <div class="popup-box">
-        <span class="close" onclick="closePopup()">×</span>
+        <span class="close" onclick="closePopup()">&times;</span>
         <h3>Register</h3>
-
-        <form action="register" method="post">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="password" placeholder="Confirm Password" required>
-            <input type="submit" value="Register">
+        <form>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <input type="submit" value="Register" class="btn-submit">
         </form>
     </div>
 </div>
 
+<script src="script.js"></script>
 </body>
 </html>
