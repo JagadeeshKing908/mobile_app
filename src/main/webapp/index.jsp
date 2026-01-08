@@ -2,6 +2,9 @@
 <html>
 <body>
 
+<link rel="stylesheet" href="css/style.css">
+
+
 <h2>Mobile Store</h2>
 
 <%
