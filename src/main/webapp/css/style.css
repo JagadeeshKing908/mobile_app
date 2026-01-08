@@ -163,3 +163,14 @@ body {
     font-size: 26px;
     cursor: pointer;
 }
+
+.popup-link-btn {
+    background: none;
+    border: none;
+    color: #2874f0;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+}
+
