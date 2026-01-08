@@ -276,6 +276,7 @@
 
             <button class="buy-btn" onclick="openLogin()">Buy Now</button>
         </article>
+       
 
     </section>
 </main>
