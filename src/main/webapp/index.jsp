@@ -16,8 +16,31 @@
 <header class="navbar">
     <h1>Mobile Store</h1>
     <nav>
-        <a href="javascript:void(0)" onclick="openLogin()">Login</a>
-        <a href="javascript:void(0)" onclick="openRegister()">Register</a>
+<nav>
+    <a href="javascript:void(0)" onclick="openLogin()">Login</a>
+    <a href="javascript:void(0)" onclick="openRegister()">Register</a>
+</nav>
+
+<div id="loginPopup" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h2>Login</h2>
+        <input type="text" placeholder="Username"><br>
+        <input type="password" placeholder="Password"><br>
+        <button class="btn-submit">Login</button>
+    </div>
+</div>
+
+<div id="registerPopup" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h2>Register</h2>
+        <input type="text" placeholder="Full Name"><br>
+        <input type="email" placeholder="Email"><br>
+        <input type="password" placeholder="Password"><br>
+        <button class="btn-submit">Sign Up</button>
+    </div>
+</div>
     </nav>
 </header>
 
