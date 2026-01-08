@@ -68,9 +68,9 @@
     <div class="popup-content">
         <span class="close" onclick="closePopup()">×</span>
         <h2>Login</h2>
-        <input type="text" placeholder="Username">
+        <input type="email" placeholder="Email">
         <input type="password" placeholder="Password">
-        <button>Login</button>
+        <button class="popup-btn">Login</button>
     </div>
 </div>
 
@@ -79,10 +79,10 @@
     <div class="popup-content">
         <span class="close" onclick="closePopup()">×</span>
         <h2>Register</h2>
-        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Full Name">
         <input type="email" placeholder="Email">
         <input type="password" placeholder="Password">
-        <button>Register</button>
+        <button class="popup-btn">Register</button>
     </div>
 </div>
 
