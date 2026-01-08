@@ -1,5 +1,6 @@
 <html>
 <body>
+
 <link rel="stylesheet" href="css/style.css">
 
 <h3>Register</h3>
