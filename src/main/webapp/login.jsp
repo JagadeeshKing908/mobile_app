@@ -1,5 +1,6 @@
 <html>
 <body>
+
 <h3>Login</h3>
 <link rel="stylesheet" href="css/style.css">
 
@@ -12,7 +13,7 @@
 <%
     if ("true".equals(request.getParameter("error"))) {
 %>
-    <p style="color:red">Login Failed</p>
+<p style="color:red">Login Failed</p>
 <%
     }
 %>
