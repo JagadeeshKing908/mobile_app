@@ -1,22 +1,19 @@
-// Open login popup
+// Popups
 function openLogin() {
     document.getElementById("loginPopup").style.display = "flex";
 }
 
-// Open register popup
 function openRegister() {
     document.getElementById("registerPopup").style.display = "flex";
 }
 
-// Close any popup
 function closePopup() {
     document.getElementById("loginPopup").style.display = "none";
     document.getElementById("registerPopup").style.display = "none";
 }
 
-// Quantity increment/decrement logic
+// Quantity increment/decrement
 document.addEventListener("DOMContentLoaded", () => {
-    // Get all product cards
     const cards = document.querySelectorAll(".card");
 
     cards.forEach(card => {
@@ -24,18 +21,27 @@ document.addEventListener("DOMContentLoaded", () => {
         const plusBtn = card.querySelector(".actions button:last-child");
         const quantitySpan = card.querySelector(".actions span");
 
-        // Increment
         plusBtn.addEventListener("click", () => {
             let count = parseInt(quantitySpan.textContent);
             quantitySpan.textContent = count + 1;
         });
 
-        // Decrement
         minusBtn.addEventListener("click", () => {
             let count = parseInt(quantitySpan.textContent);
-            if (count > 0) {
-                quantitySpan.textContent = count - 1;
-            }
+            if (count > 0) quantitySpan.textContent = count - 1;
+        });
+
+        // Image hover swap (front/back)
+        const img = card.querySelector("img");
+        const images = JSON.parse(img.dataset.images);
+        let index = 0;
+
+        img.addEventListener("mouseenter", () => {
+            if (images[1]) img.src = images[1];
+        });
+
+        img.addEventListener("mouseleave", () => {
+            img.src = images[0];
         });
     });
 });
