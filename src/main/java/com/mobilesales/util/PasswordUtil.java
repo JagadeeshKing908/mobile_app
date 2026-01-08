@@ -1,10 +1,26 @@
 package com.mobilesales.util;
 
-import org.mindrot.jbcrypt.BCrypt;
+import java.security.MessageDigest;
 
 public class PasswordUtil {
 
-    public static boolean checkPassword(String plain, String hashed) {
-        return BCrypt.checkpw(plain, hashed);
+    public static String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashed = md.digest(password.getBytes());
+
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashed) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Error hashing password", e);
+        }
+    }
+
+    public static boolean verifyPassword(String plainPassword, String hashedPassword) {
+        return hashPassword(plainPassword).equals(hashedPassword);
     }
 }
